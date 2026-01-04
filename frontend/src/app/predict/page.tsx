@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { motion, AnimatePresence } from "framer-motion";
-import { Activity, User, Ruler, HeartPulse, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
+import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
+import { AnimatePresence, motion } from "framer-motion";
+import { Activity, AlertCircle, CheckCircle2, Loader2, User } from "lucide-react";
+import { useState } from "react";
 
 const steps = [
     { id: 1, title: "Personal Details", icon: User },
@@ -43,8 +43,7 @@ export default function PredictPage() {
         setLoading(true);
         setResult(null);
         try {
-            // Assuming Backend is running on port 8000
-            const response = await fetch("http://localhost:8000/predict", {
+            const response = await fetch("https://cardio-care-ai.onrender.com", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
