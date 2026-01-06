@@ -154,8 +154,8 @@ def get_model():
     global model
     if model is None:
         try:
-            model = joblib.load(MODEL_PATH)
-            print("Model loaded into memory")
+            model = joblib.load(MODEL_PATH, mmap_mode='r')
+            print("Model loaded into memory (mmap)")
         except Exception as e:
             print("Model load failed:", e)
             raise HTTPException(status_code=500, detail="Model not available")
